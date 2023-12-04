@@ -1,5 +1,5 @@
 vim.opt.nu = true
-vim.opt.relativenumber = treu
+vim.opt.relativenumber = true
 
 vim.opt.tabstop = 4
 

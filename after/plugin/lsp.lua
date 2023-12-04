@@ -1,6 +1,6 @@
 
  lsp = require('lsp-zero')
-
+require'lspconfig'.pylsp.setup{}
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
