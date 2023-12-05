@@ -33,13 +33,35 @@ require('lualine').setup {
         lualine_z = {'location'}
     },
     inactive_sections = {
-        lualine_a = {},
+        lualine_a = {
+            -- Add components here if needed
+        },
         lualine_b = {},
-        lualine_c = {'filename'},
-        lualine_x = {'location'},
-        lualine_y = {},
-        lualine_z = {}
-    },
+        lualine_c = {
+            {
+                'filename', icon = '',
+                color = { fg = "#ffffff", bg = "#F33A6A" } -- Set text color to white
+            }
+        },
+        lualine_x = {
+            {
+                'location',
+                color = { fg = "#ffffff", bg = "#783af3" } -- Set text color to white
+            }
+        },
+        lualine_y = {
+            { 
+                'branch', 'diff', 
+                color = { fg = "#ffffff", bg = "#F33A6A" } -- Set text color to white
+            }
+        },
+        lualine_z = {
+            { 
+                'progress', 
+                color = { fg = "#ffffff", bg = "#ff2e4a" } -- Set text color to white
+            }
+        },
+    },   
     tabline = {},
     winbar = {},
     inactive_winbar = {},

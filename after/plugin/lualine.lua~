@@ -1,3 +1,4 @@
+local inactive_bg_color = "#F33A6A" -- A lighter shade, adjust as needed
 require('lualine').setup {
     options = {
         icons_enabled = true,
@@ -33,13 +34,35 @@ require('lualine').setup {
         lualine_z = {'location'}
     },
     inactive_sections = {
-        lualine_a = {},
+        lualine_a = {
+            -- Add components here if needed
+        },
         lualine_b = {},
-        lualine_c = {'filename'},
-        lualine_x = {'location'},
-        lualine_y = {},
-        lualine_z = {}
-    },
+        lualine_c = {
+            {
+                'filename', icon = '',
+                color = { fg = "#ffffff", bg = inactive_bg_color } -- Set text color to white
+            }
+        },
+        lualine_x = {
+            {
+                'location',
+                color = { fg = "#ffffff", bg = inactive_bg_color } -- Set text color to white
+            }
+        },
+        lualine_y = {
+            { 
+                'branch', 'diff', 
+                color = { fg = "#ffffff", bg = inactive_bg_color } -- Set text color to white
+            }
+        },
+        lualine_z = {
+            { 
+                'progress', 
+                color = { fg = "#ffffff", bg = inactive_bg_color } -- Set text color to white
+            }
+        },
+    },   
     tabline = {},
     winbar = {},
     inactive_winbar = {},

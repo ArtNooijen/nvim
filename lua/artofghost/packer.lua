@@ -17,24 +17,24 @@ return require('packer').startup(function(use)
     use { "catppuccin/nvim", as = "catppuccin" }
 
     use {
-        'nvim-treesitter/nvim-treesitter', 
+        'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
     }
     use "nvim-lua/plenary.nvim" -- don't forget to add this one if you don't have it yet!
 
-use {
-    'rafamadriz/friendly-snippets',
-    event = 'InsertEnter'
-}
-use {
-    'norcalli/nvim-colorizer.lua',
-    config = function() require'colorizer'.setup() end
-}
-use {
-    'SmiteshP/nvim-gps',
-    requires = 'nvim-treesitter/nvim-treesitter',
-    config = function() require'nvim-gps'.setup() end
-}
+    use {
+        'rafamadriz/friendly-snippets',
+        event = 'InsertEnter'
+    }
+    use {
+        'norcalli/nvim-colorizer.lua',
+        config = function() require'colorizer'.setup() end
+    }
+    use {
+        'SmiteshP/nvim-gps',
+        requires = 'nvim-treesitter/nvim-treesitter',
+        config = function() require'nvim-gps'.setup() end
+    }
 
 
     use {
@@ -76,5 +76,4 @@ use {
 
     use 'kyazdani42/nvim-web-devicons'
     use 'rose-pine/neovim'
-
 end)

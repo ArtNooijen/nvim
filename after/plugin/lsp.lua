@@ -1,5 +1,6 @@
 
- lsp = require('lsp-zero')
+local lsp = require('lsp-zero')
+ 
 require'lspconfig'.pylsp.setup{}
 
 local cmp = require('cmp')
@@ -47,12 +48,12 @@ cmp_mappings['<S-Tab>'] = nil
 
 
 lsp.set_preferences({
-    suggest_lsp_servers = false,
+    suggest_lsp_servers = true,
     sign_icons = {
-        error = 'E',
-        warn = 'W',
-        hint = 'H',
-        info = 'I'
+        error = ' ',
+        warn = ' ',    
+        hint = 'H',     
+        info = ' ',
     }
 })
 
