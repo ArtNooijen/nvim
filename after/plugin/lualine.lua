@@ -37,6 +37,27 @@ local function current_session_name()
     end
 end
 
+
+local function git_status()
+    local handle = io.popen("git status -sb --porcelain")
+    local git_status = handle:read("*a")
+    handle:close()
+
+    local to_push = string.find(git_status, "ahead")
+    local to_pull = string.find(git_status, "behind")
+    local not_staged = string.find(git_status, "^%s*[^ ]")
+
+    if to_push then
+        return " Push"
+    elseif to_pull then
+        return " Pull"
+    elseif not_staged then
+        return " Stage then Commit"
+    else
+        return ""
+    end
+end
+
 require('lualine').setup {
     options = {
         icons_enabled = true,
@@ -60,16 +81,16 @@ require('lualine').setup {
         lualine_a = {'mode'},
         lualine_b = {
             { 'branch', icon = '' },
+            {git_status},
             'diff',
             { 'diagnostics', sources = {'nvim_diagnostic'}, symbols = {error = ' ', warn = ' ', info = ' '},
             { current_session_name, icon = '📁'},  -- Updated session name component
         },
         },
         lualine_c = {
-            { 'filename', file_status = true, path = 1 },
+            { 'filename'},
             { isBufferSaved , color = { fg = "#ffffff", bg = "#F33A6A" }},
             { isBufferNotSaved, color = { fg = "#ffffff", bg = "#32CD32"}}, -- Custom buffer saved status component
-            -- ... Add other components here if needed ...
         },
 
         
