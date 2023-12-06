@@ -1,9 +1,39 @@
 -- Custom function to show buffer saved status
 local function isBufferSaved()
     if vim.bo.modified then
-        return ""  -- Icon for unsaved/modified buffer
+        return "----"  -- Icon for unsaved/modified buffer
+    else 
+        return ""  -- Icon for saved buffer
+    end
+end
+
+local function isBufferNotSaved()
+    if not vim.bo.modified then
+        return "----"  -- Icon for unsaved/modified buffer
     else
-        return ""  -- Icon for saved buffer
+        return ""  -- Icon for saved buffer
+    end
+
+end
+
+local function lsp_status()
+  local clients = vim.lsp.buf_get_clients()
+  if next(clients) ~= nil then
+    return 'LSP'
+  else
+    return 'No LSP'
+  end
+end
+
+
+local function current_session_name()
+    local session_name = require('auto-session-library').current_session_name()
+    if session_name and session_name ~= "" then
+        -- Format the session name as you like, e.g., extract basename
+        local basename = vim.fn.fnamemodify(session_name, ":t:r")
+        return basename
+    else
+        return "No Session"
     end
 end
 
@@ -32,21 +62,18 @@ require('lualine').setup {
             { 'branch', icon = '' },
             'diff',
             { 'diagnostics', sources = {'nvim_diagnostic'}, symbols = {error = ' ', warn = ' ', info = ' '},
-            {
-                -- Function to get and display the current session name
-                function()
-                    return require('auto-session.lib').current_session_name()
-                end,
-                icon = '📁', -- Optional: add an icon or text to indicate the session
-            }
+            { current_session_name, icon = '📁'},  -- Updated session name component
         },
         },
         lualine_c = {
             { 'filename', file_status = true, path = 1 },
-            { isBufferSaved },  -- Custom buffer saved status component
+            { isBufferSaved , color = { fg = "#ffffff", bg = "#F33A6A" }},
+            { isBufferNotSaved, color = { fg = "#ffffff", bg = "#32CD32"}}, -- Custom buffer saved status component
             -- ... Add other components here if needed ...
         },
-        lualine_x = {'encoding', 'fileformat', 'filetype'},
+
+        
+        lualine_x = {'encoding', 'fileformat', 'filetype', lsp_status},
         lualine_y = {'progress'},
         lualine_z = {'location'}
     },
