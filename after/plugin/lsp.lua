@@ -1,6 +1,5 @@
-
 local lsp = require('lsp-zero')
- 
+
 require'lspconfig'.pylsp.setup{}
 
 local cmp = require('cmp')
@@ -21,13 +20,18 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
       documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
-      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-<leader>'] = cmp.mapping.complete(),
       ['<C-f>'] = cmp_action.luasnip_jump_forward(),
       ['<C-b>'] = cmp_action.luasnip_jump_backward(),
       ['<C-u>'] = cmp.mapping.scroll_docs(-4),
       ['<C-d>'] = cmp.mapping.scroll_docs(4),
+      ['<CR>'] = cmp.mapping.confirm({
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = true,
+        }),
     })
   })
+
 lsp.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
 
@@ -43,19 +47,11 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
-cmp_mappings['<Tab>'] = nil 
-cmp_mappings['<S-Tab>'] = cmp.mapping.select_next_item(cmp_select)
+cmp_mappings['<Tab>'] = nil
 
 
-lsp.set_preferences({
-    suggest_lsp_servers = true,
-    sign_icons = {
-        error = ' ',
-        warn = ' ',    
-        hint = 'H',     
-        info = ' ',
-    }
-})
+
+
 
 require('mason').setup({})
 require('mason-lspconfig').setup({

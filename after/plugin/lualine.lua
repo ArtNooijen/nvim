@@ -23,9 +23,9 @@ require('lualine').setup {
             { 'branch', icon = '' },
             'diff',
             { 'diagnostics', sources = {'nvim_diagnostic'}, symbols = {error = ' ', warn = ' ', info = ' '},
-            { 
+            {
                 -- Function to get and display the current session name
-                function() 
+                function()
                     return require('auto-session.lib').current_session_name()
                 end,
                 icon = '📁', -- Optional: add an icon or text to indicate the session
@@ -57,18 +57,18 @@ require('lualine').setup {
             }
         },
         lualine_y = {
-            { 
-                'branch', 'diff', 
+            {
+                'branch', 'diff',
                 color = { fg = "#ffffff", bg = "#F33A6A" } -- Set text color to white
             }
         },
         lualine_z = {
-            { 
-                'progress', 
+            {
+                'progress',
                 color = { fg = "#ffffff", bg = "#ff2e4a" } -- Set text color to white
             }
         },
-    },   
+    },
     tabline = {},
     winbar = {},
     inactive_winbar = {},
