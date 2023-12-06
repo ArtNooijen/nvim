@@ -40,12 +40,14 @@ end
 
 local function git_status()
     local handle = io.popen("git status -sb --porcelain")
+    if not handle then return "" end
     local git_status = handle:read("*a")
     handle:close()
 
     local to_push = string.find(git_status, "ahead")
     local to_pull = string.find(git_status, "behind")
     local not_staged = string.find(git_status, "^%s*[^ ]")
+    local is_clean = git_status == ""
 
     if to_push then
         return " Push"
@@ -53,6 +55,8 @@ local function git_status()
         return " Pull"
     elseif not_staged then
         return " Stage then Commit"
+    elseif is_clean then
+        return " Clean"
     else
         return ""
     end
