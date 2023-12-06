@@ -1,6 +1,6 @@
 vim.opt.nu = true
 vim.opt.relativenumber = true
-
+vim.opt.wrap = false
 vim.opt.tabstop = 4
 
 vim.opt.tabstop = 4
@@ -12,7 +12,7 @@ vim.opt.smartindent = true
 
 vim.opt.undodir = os.getenv("USERPROFILE") .. "/.vim/undodir"
 vim.opt.swapfile = false
-vim.opt.backup = true
+vim.opt.backup = false
 vim.opt.undofile = true
 
 

@@ -43,8 +43,8 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
-cmp_mappings['<Tab>'] = nil
-cmp_mappings['<S-Tab>'] = nil
+cmp_mappings['<Tab>'] = nil 
+cmp_mappings['<S-Tab>'] = cmp.mapping.select_next_item(cmp_select)
 
 
 lsp.set_preferences({

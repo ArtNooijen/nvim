@@ -22,11 +22,18 @@ require('lualine').setup {
         lualine_b = {
             { 'branch', icon = '' },
             'diff',
-            { 'diagnostics', sources = {'nvim_diagnostic'}, symbols = {error = ' ', warn = ' ', info = ' '} },
+            { 'diagnostics', sources = {'nvim_diagnostic'}, symbols = {error = ' ', warn = ' ', info = ' '},
+            { 
+                -- Function to get and display the current session name
+                function() 
+                    return require('auto-session.lib').current_session_name()
+                end,
+                icon = '📁', -- Optional: add an icon or text to indicate the session
+            }
+        },
         },
         lualine_c = {
             { 'filename', file_status = true, path = 1 },  -- Corrected this line
-            { 'nvim-gps', cond = require('nvim-gps').is_available }
         },
         lualine_x = {'encoding', 'fileformat', 'filetype'},
         lualine_y = {'progress'},
