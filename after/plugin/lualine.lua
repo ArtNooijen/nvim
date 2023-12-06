@@ -1,3 +1,12 @@
+-- Custom function to show buffer saved status
+local function isBufferSaved()
+    if vim.bo.modified then
+        return ""  -- Icon for unsaved/modified buffer
+    else
+        return ""  -- Icon for saved buffer
+    end
+end
+
 require('lualine').setup {
     options = {
         icons_enabled = true,
@@ -33,7 +42,9 @@ require('lualine').setup {
         },
         },
         lualine_c = {
-            { 'filename', file_status = true, path = 1 },  -- Corrected this line
+            { 'filename', file_status = true, path = 1 },
+            { isBufferSaved },  -- Custom buffer saved status component
+            -- ... Add other components here if needed ...
         },
         lualine_x = {'encoding', 'fileformat', 'filetype'},
         lualine_y = {'progress'},
