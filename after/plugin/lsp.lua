@@ -31,10 +31,8 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
         }),
     })
   })
-
 lsp.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
-
   vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
   vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
   vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
@@ -49,7 +47,14 @@ end)
 
 cmp_mappings['<Tab>'] = nil
 
-
+vim.keymap.set('n', '<leader>f', '<cmd>Lspsaga finder<CR>', {silent = true, noremap = true})
+vim.keymap.set('n', '<leader>i', '<cmd>Lspsaga finder imp<CR>', {silent = true, noremap = true})
+vim.keymap.set('n', '<leader>pd', '<cmd>Lspsaga peek_definition<CR>', {silent = true, noremap = true})
+vim.keymap.set('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>', {silent = true, noremap = true})
+vim.keymap.set('n', '<leader>o', '<cmd>Lspsaga outline<CR>', {silent = true, noremap = true})
+vim.keymap.set('n', '<leader>rn', '<cmd>Lspsaga rename<CR>', {silent = true, noremap = true})
+vim.keymap.set('t', '<leader>t', '<cmd>Lspsaga term_toggle<CR>', {silent = true, noremap = true})
+vim.keymap.set('n', '<leader>t', '<cmd>Lspsaga term_toggle<CR>', {silent = true, noremap = true})
 
 
 
@@ -60,3 +65,4 @@ require('mason-lspconfig').setup({
     lsp.default_setup,
   },
 })
+

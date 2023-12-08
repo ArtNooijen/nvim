@@ -38,6 +38,7 @@ require("catppuccin").setup({
     color_overrides = {},
     custom_highlights = {
         CmpBorder = { fg = "#ffffff" },
+
     },
     integrations = {
         cmp = true,
@@ -47,8 +48,17 @@ require("catppuccin").setup({
         notify = false,
         mini = {
             enabled = true,
-            indentscope_color = "", 
+            indentscope_color = "",
         },
+        telescope = {
+            enabled = true,
+            show_line_diagnostics = true,
+            results_number = true,
+            scroll_bar = true,
+            scroll_bar_sign = "█",
+            hide_cursor = true,
+        },
+        harpoon = true,
         -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
     },
 })

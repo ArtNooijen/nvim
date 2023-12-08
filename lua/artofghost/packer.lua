@@ -110,4 +110,18 @@ return require('packer').startup(function(use)
             }
         end
     }
+
+    use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
+    use ({
+        'nvimdev/lspsaga.nvim',
+        after = 'nvim-lspconfig',
+        config = function()
+            require('lspsaga').setup({
+            
+            
+            })
+        end,
+    })
+
+
 end)
